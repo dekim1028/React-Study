@@ -1,11 +1,10 @@
 import React from 'react';
-import Info from './Info';
-
+import Average from './Average';
 
 function App() {
 
   return (
-    <Info/>
+    <Average/>
     
   );
 }
