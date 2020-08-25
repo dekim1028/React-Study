@@ -1,6 +1,4 @@
-@import './styles/untils.scss';
- 
-.SassComponent{
+ .SassComponent{
     display: flex;
     .box{ // 일반 css에서는 .SassComponent .box와 마찬가지
         background: red;
