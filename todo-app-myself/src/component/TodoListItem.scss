@@ -12,18 +12,20 @@
         flex: 1;
         align-items: center;
         svg{
+            cursor: pointer;
             font-size: 25px;
         }
         .text{
             margin-left:10px;
         }
 
-        &:checked{
+        &.checked{
             svg{
-                
+                color:#34a782;
             }
             .text{
-                
+                color:#adb5bd;
+                text-decoration: line-through;
             }
         }
     }
@@ -33,6 +35,7 @@
         align-items: center;
         font-size: 25px;
         color: #ff6b6b;
+        cursor: pointer;
         &:hover{
             color: #ff8787;
         }
