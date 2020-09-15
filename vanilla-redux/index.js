@@ -15,3 +15,23 @@ const initialState = {
     toggle : false,
     counter : 0
 }
+
+function reducer(state=initialState, action){
+    switch(action.type){
+        case TOGGLE_SWITCH:
+            return{
+                ...state, //불변성 유지를 해주어야합니다.
+                toggle: !state.toggle
+            };
+        case INCREASE:
+            return{
+                ...state,
+                counter:state.counter+action.difference
+            };
+        case DECREASE:
+            return{
+                ...state,
+                counter:state.counter-1
+            };
+    }
+}
