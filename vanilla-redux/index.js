@@ -7,7 +7,7 @@ const btnDecrease = document.querySelector('#decrease');
 
 const TOGGLE_SWITCH = 'TOGGLE_SWITCH';
 const INCREASE = 'INCREASE';
-const DECREASE ='DECREASE';
+const DECREASE = 'DECREASE';
 
 const toggleSwitch = () => ({type:TOGGLE_SWITCH});
 const increase = difference => ({type:INCREASE, difference});
@@ -35,6 +35,8 @@ function reducer(state=initialState, action){
                 ...state,
                 counter:state.counter-1
             };
+        default:
+            return state;
     }
 }
 
@@ -55,3 +57,15 @@ const render = () =>{
 
 render();
 store.subscribe(render);
+
+divToggle.onclick =() =>{
+    store.dispatch(toggleSwitch());
+};
+
+btnIncrease.onclick=()=>{
+    store.dispatch(increase(1));
+};
+
+btnDecrease.onclick=()=>{
+    store.dispatch(decrease());
+};
