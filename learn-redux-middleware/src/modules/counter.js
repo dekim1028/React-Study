@@ -30,6 +30,7 @@ function* decreaseSaga(){
 }
 
 export function* counterSaga(){
+    //saga가 실행되는 주기 제한방법
     //첫번째 파라미터: n초 * 1000
     yield throttle(3000,INCREASE_ASYNC,increaseSaga);
     //takeLatest는 기존에 진행중이던 작업이 있다면 취소처리하고
