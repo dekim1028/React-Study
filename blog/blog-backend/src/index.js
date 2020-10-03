@@ -1,1 +1,1 @@
-cosnt hello="hello";
+const hello="hello";
