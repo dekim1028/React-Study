@@ -14,9 +14,9 @@ posts.patch('/:id', postsCtrl.checkObjectId, postsCtrl.update);
 
 const post = new Router(); // /api/post/:id
 post.get('/', postsCtrl.read);
-post.delete('/',checkLoggedIn, postsCtrl.remove);
-post.patch('/',checkLoggedIn, postsCtrl.update);
+post.delete('/',checkLoggedIn, postsCtrl.checkOwnPost, postsCtrl.remove);
+post.patch('/',checkLoggedIn, postsCtrl.checkOwnPost, postsCtrl.update);
 
-posts.use('/:id',postsCtrl.checkObjectId, post.routes());
+posts.use('/:id',postsCtrl.getPostById, post.routes());
 
 export default posts;
