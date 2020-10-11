@@ -4,11 +4,10 @@ import {changeField, initializeForm, register} from '../../modules/auth';
 import { useEffect } from 'react';
 import AuthForm from '../../components/auth/AuthForm';
 import {check} from '../../modules/user';
-import {useHistory,withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
-const RegisterForm = () => {
+const RegisterForm = ({history}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const {form, auth, authError, user} = useSelector(({auth, user})=>({
         form:auth.register,
