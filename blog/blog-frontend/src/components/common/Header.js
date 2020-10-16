@@ -36,7 +36,7 @@ const Spacer = styled.div`
     height:4rem;
 `;
 
-const Header = ({user}) => {
+const Header = ({user, onLogout}) => {
     return (
         <>
             <HeaderBlock>
@@ -48,7 +48,7 @@ const Header = ({user}) => {
                         user?(
                             <div className="right">
                                 <UserInfo>{user.username}</UserInfo>
-                                <Button to="/logout">로그아웃</Button>
+                                <Button onClick={onLogout}>로그아웃</Button>
                             </div>
                         ):(
                             <div className="right">
