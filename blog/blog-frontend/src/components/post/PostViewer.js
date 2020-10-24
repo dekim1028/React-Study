@@ -48,24 +48,37 @@ const PostContent = styled.div`
     color:${palette.gray[8]};
 `;
 
-const PostViewer = () => {
+const PostViewer = ({post,error,loading}) => {
+    if(error){
+        if(error.response && error.response.status===404){
+            return <PostViewBlock>존재하지 않는 포스트입니다.</PostViewBlock>
+        }
+        return <PostViewBlock>오류 발생!!</PostViewBlock>
+    }
+
+    if(loading || !post){
+        return null;
+    }
+
+    const {title,body,user,publishedData,tags} = post;
+
     return (
         <PostViewBlock>
             <PostHead>
-                <h1>제목</h1>
+                <h1>{title}</h1>
                 <SubInfo>
                     <span>
-                        <b>tester</b>
+                        <b>{user.username}</b>
                     </span>
-                    <span>{new Date().toLocaleDateString()}</span>
+                    <span>{new Date(publishedData).toLocaleDateString()}</span>
                 </SubInfo>
                 <Tags>
-                    <div className="tag">#태그1</div>
-                    <div className="tag">#태그2</div>
-                    <div className="tag">#태그3</div>
+                    {
+                        tags.map(tag=><div className="tag" key={tag}>#{tag}</div>)
+                    }
                 </Tags>
             </PostHead>
-            <PostContent dangerouslySetInnerHTML={{__html:`<p>HTML 내용</p>`}}/>
+            <PostContent dangerouslySetInnerHTML={{__html:body}}/>
         </PostViewBlock>
     );
 };
