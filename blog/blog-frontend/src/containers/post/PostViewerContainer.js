@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import { readPost, unloadPost } from '../../modules/post';
 import PostActionButtons from '../../components/post/PostActionButtons';
 import {setOriginalPost} from '../../modules/write';
+import { removePost } from '../../lib/api/posts';
 
 const PostViewerContainer = ({match,history}) => {
     const {postId} =match.params;
@@ -29,14 +30,23 @@ const PostViewerContainer = ({match,history}) => {
         history.push("/write");
     };
 
-    const ownPost = (user&&user._id) === (post&&post.user.id);
+    const onRemove = async () =>{
+        try{
+            await removePost(postId);
+            history.push('/');
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    const ownPost = (user&&user._id) === (post&&post.user._id);
 
     return (
         <PostViewer
             post={post}
             error={error}
             loading={loading}
-            actionButtons={<PostActionButtons onEdit={onEdit}/>}
+            actionButtons={ownPost&&<PostActionButtons onEdit={onEdit} onRemove={onRemove}/>}
         />
     );
 };
